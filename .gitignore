@@ -1,4 +1,6 @@
 *.swp
+*.pfx
+*.cer
 *.*~
 project.lock.json
 .DS_Store
@@ -29,6 +31,8 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Oo]ut/
+PublishProfiles/
+ServiceDependencies/
 msbuild.log
 msbuild.err
 msbuild.wrn
