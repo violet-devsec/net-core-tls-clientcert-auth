@@ -19,7 +19,7 @@ namespace ClientCertAuth.Client
         {
             try
             {
-                HttpHelper httpClient = new HttpHelper(new X509Certificate2(File.ReadAllBytes("attacker_cert.pfx"), "<cert_pass>"));
+                HttpHelper httpClient = new HttpHelper(new X509Certificate2(File.ReadAllBytes("user_cert.pfx"), "<cert_pass>"));
 
                 var response = await httpClient.GetAsync("https://clientcertauthapp.azurewebsites.net/weatherforecast");
 
