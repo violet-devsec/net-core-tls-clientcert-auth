@@ -34,7 +34,26 @@ namespace ClientCertAuth.WebApi.Helpers
             }
             if (!foundSubject) return false;
 
+
+            // Check issuer name of certificate
+            bool foundIssuerCN = false, foundIssuerO = false;
             string[] certIssuerData = clientCert.Issuer.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string s in certIssuerData)
+            {
+                if (String.Compare(s.Trim(), "CN=<expected_issuer_name>") == 0)
+                {
+                    foundIssuerCN = true;
+                    if (foundIssuerO) break;
+                }
+
+                if (String.Compare(s.Trim(), "O=<expected_issuer_name>") == 0)
+                {
+                    foundIssuerO = true;
+                    if (foundIssuerCN) break;
+                }
+            }
+
+            if (!foundIssuerCN || !foundIssuerO) return false;
 
             return true;
         }
